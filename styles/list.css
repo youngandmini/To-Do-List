@@ -1,0 +1,76 @@
+
+ul {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    list-style-type: none;
+
+    background-color: mintcream;
+    border-radius: 13px;
+    padding: 20px 10px 20px 10px;
+
+    height: 30px;
+    font-size: 20px;
+
+    margin-left: -20px;
+
+    margin-right: 25px;
+    margin-bottom: 20px;
+
+    text-align: left;
+    align-items: center;
+    /*justify-content: left;*/
+
+    min-width: 400px;
+}
+
+.check-section {
+    /*flex-grow: 2;*/
+    margin-left: 10px;
+    margin-right: 10px;
+
+    order: 1;
+}
+
+.text-section {
+    margin-left: 5px;
+    text-decoration-line: none;
+    flex-grow: 2;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    order: 2;
+}
+
+.text-input-section {
+    margin-left: 5px;
+    flex-grow: 2;
+    font-size: 20px;
+
+    order: 2;
+}
+
+.button-section {
+
+    min-width: 100px;
+    margin-right: 5px;
+    margin-left: 10px;
+
+    justify-content: normal;
+
+    order: 3;
+}
+
+.edit-complete-button {
+    margin-right: 10px;
+}
+.edit-button {
+    margin-right: 10px;
+}
