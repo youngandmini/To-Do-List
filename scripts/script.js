@@ -15,11 +15,13 @@ window.onload = function(){
     for (let i = 0; i <= id; i++) {
         if (localStorage.getItem(i.toString()) !== null) {
 
-            // let checked = false;
-            // const boolString = localStorage.getItem(i.toString() + "checked");
-            // checked = boolString === 'true';
+            const idChecked = i.toString() + "_checked";
 
-            addExistingWork(i, localStorage.getItem(i.toString()));
+            if (localStorage.getItem(idChecked)) {
+                addExistingWork(i, localStorage.getItem(i.toString()), true);
+            } else {
+                addExistingWork(i, localStorage.getItem(i.toString()));
+            }
         }
     }
 
@@ -99,16 +101,15 @@ function addNewWork(event) {
 
 
 // 기존의 할일 불러오기
-function addExistingWork(existingId, work) {
+function addExistingWork(existingId, work, isChecked = false) {
     const li = document.createElement("li");
     li.id = existingId;
 
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
-
-    // if (checked) {
-    //     checkBox.checked = true;
-    // }
+    if (isChecked) {
+        checkBox.checked = true;
+    }
 
     let checkSection = document.createElement("div");
     checkSection.classList.add("check-section");
@@ -118,10 +119,9 @@ function addExistingWork(existingId, work) {
 
     textSection.textContent = work;
     textSection.classList.add("text-section");
-
-    // if (checked) {
-    //     textSection.style.textDecorationLine = "line-through";
-    // }
+    if (isChecked) {
+        textSection.style.textDecorationLine = "line-through";
+    }
 
     let inputText = document.createElement("input");
     inputText.setAttribute("type", "text");
@@ -239,10 +239,10 @@ function checked(event) {
 
         if (this.checked) {
             text.style.textDecorationLine = "line-through";
-            // localStorage.setItem(liId.toString() + "checked", true.toString());
+            localStorage.setItem(liId.toString() + "_checked", true.toString());
         } else {
             text.style.textDecorationLine = "none";
-            // localStorage.removeItem(liId.toString() + "checked");
+            localStorage.removeItem(liId.toString() + "_checked");
         }
     });
 }
