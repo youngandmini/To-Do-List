@@ -27,6 +27,8 @@ window.onload = function(){
 
 // 새로운 할일을 생성하라는 버튼
 document.getElementById("add_list").addEventListener("click", addNewWork);
+// 초기화 버튼
+document.getElementById("clear_all").addEventListener("click", clearAll);
 
 
 // 생성한 li를 to_do_list에 추가
@@ -89,13 +91,14 @@ function addNewWork(event) {
     removeButton.addEventListener("click", remove);
     checkBox.addEventListener("change", checked);
 
+    //새로 만든 것은 로컬스토리지에 등록해줘야함.
     localStorage.setItem(id.toString(), work);
     id += 1;
     localStorage.setItem("id", id.toString());
 }
 
 
-// 기존의 할일 불러오기 - 체크 여부도 같이 가져오도록 수정해야함
+// 기존의 할일 불러오기
 function addExistingWork(existingId, work) {
     const li = document.createElement("li");
     li.id = existingId;
@@ -219,7 +222,7 @@ function remove(event){
     const li = target.parentElement.parentElement;
     const liId = li.id;
 
-    let yes_or_no = confirm("정말 삭제하시겠습니까? 내용을 복구되지 않습니다.");
+    let yes_or_no = confirm("정말 삭제하시겠습니까? 내용은 복구되지 않습니다.");
     if (yes_or_no) {
         li.parentElement.removeChild(li);
         localStorage.removeItem(liId.toString());
@@ -242,4 +245,19 @@ function checked(event) {
             // localStorage.removeItem(liId.toString() + "checked");
         }
     });
+}
+
+
+//==========================================================================
+
+//초기화
+function clearAll() {
+
+    let yes_or_no = confirm("정말 초기화하시겠습니까? 내용은 복구되지 않습니다.");
+    if (yes_or_no) {
+        //삭제
+        ul.innerHTML = "";
+        localStorage.clear();
+    }
+
 }
