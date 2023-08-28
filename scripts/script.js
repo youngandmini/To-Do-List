@@ -199,6 +199,7 @@ function remove(event){
     if (yes_or_no) {
         li.parentElement.removeChild(li);
         localStorage.removeItem(liId.toString());
+        localStorage.removeItem(liId.toString() + "_checked");
     }
 }
 
