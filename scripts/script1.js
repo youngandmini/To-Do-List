@@ -41,12 +41,53 @@ function addLiToUl(li) {
 
 //========================================================
 
-//li에 들어갈 버튼들을 생성
-function createElementsInLi(li, checkSection, textSection, checkBox) {
+// 새로운 할일 생성
+function addNewWork(event) {
+    const li = document.createElement("li");
+    li.id = id;
+    const work = "새로운 할 일";
+
+    createLi(li, work);
+
+    //새로 만든 것은 로컬스토리지에 등록해줘야함.
+    localStorage.setItem(id.toString(), work);
+    id += 1;
+    localStorage.setItem("id", id.toString());
+}
+
+
+// 기존의 할일 불러오기
+function addExistingWork(existingId, work, isChecked = false) {
+    const li = document.createElement("li");
+    li.id = existingId;
+
+    createLi(li, work, isChecked);
+
+}
+
+//li에 들어갈 버튼들을 만들어서 ul에 추가
+function createLi(li, work, isChecked = false) {
     let inputText = document.createElement("input");
     inputText.setAttribute("type", "text");
     inputText.classList.add("text-input-section");
     inputText.style.display = "none";
+
+    let checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
+    if (isChecked) {
+        checkBox.checked = true;
+    }
+    let checkSection = document.createElement("div");
+    checkSection.classList.add("check-section");
+    checkSection.appendChild(checkBox);
+
+
+    let textSection = document.createElement("div");
+    textSection.textContent = work;
+    textSection.classList.add("text-section");
+    if (isChecked) {
+        textSection.style.textDecorationLine = "line-through";
+    }
 
     let editCompleteButton = document.createElement("button");
     editCompleteButton.classList.add("edit-complete-button");
@@ -75,60 +116,6 @@ function createElementsInLi(li, checkSection, textSection, checkBox) {
     editCompleteButton.addEventListener("click", edit);
     removeButton.addEventListener("click", remove);
     checkBox.addEventListener("change", checked);
-}
-
-
-// 새로운 할일 생성
-function addNewWork(event) {
-    const li = document.createElement("li");
-    const work = "새로운 할 일";
-    li.id = id;
-
-    let checkBox = document.createElement("input");
-    checkBox.setAttribute("type", "checkbox");
-    let checkSection = document.createElement("div");
-    checkSection.classList.add("check-section");
-    checkSection.appendChild(checkBox);
-
-    let textSection = document.createElement("div");
-
-    textSection.textContent = work;
-    textSection.classList.add("text-section");
-
-    createElementsInLi(li, checkSection, textSection, checkBox);
-
-    //새로 만든 것은 로컬스토리지에 등록해줘야함.
-    localStorage.setItem(id.toString(), work);
-    id += 1;
-    localStorage.setItem("id", id.toString());
-}
-
-
-// 기존의 할일 불러오기
-function addExistingWork(existingId, work, isChecked = false) {
-    const li = document.createElement("li");
-    li.id = existingId;
-
-    let checkBox = document.createElement("input");
-    checkBox.setAttribute("type", "checkbox");
-    if (isChecked) {
-        checkBox.checked = true;
-    }
-
-    let checkSection = document.createElement("div");
-    checkSection.classList.add("check-section");
-    checkSection.appendChild(checkBox);
-
-    let textSection = document.createElement("div");
-
-    textSection.textContent = work;
-    textSection.classList.add("text-section");
-    if (isChecked) {
-        textSection.style.textDecorationLine = "line-through";
-    }
-
-    createElementsInLi(li, checkSection, textSection, checkBox);
-
 }
 
 //========================================================
