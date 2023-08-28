@@ -11,7 +11,7 @@ li {
 
     list-style-type: none;
 
-    background-color: mintcream;
+    background-color: whitesmoke;
     border-radius: 13px;
     padding: 20px 10px 20px 10px;
 
@@ -20,7 +20,7 @@ li {
 
     margin-left: -20px;
 
-    margin-right: 25px;
+    margin-right: 20px;
     margin-bottom: 20px;
 
     text-align: left;
@@ -72,5 +72,47 @@ li {
     margin-right: 10px;
 }
 .edit-button {
-    margin-right: 10px;
+    margin-right: 20px;
+
+    border: none;
+
+    background: transparent url('../assets/icons/edit.png') no-repeat;
+    background-size: contain;
+
+    height: 25px;
+    width: 25px;
+
+    cursor: pointer;
+
+    vertical-align: middle;
+}
+
+.remove-button {
+    border: none;
+
+    background: transparent url('../assets/icons/remove.png') no-repeat;
+    background-size: contain;
+
+    height: 25px;
+    width: 25px;
+
+    cursor: pointer;
+
+    vertical-align: middle;
+}
+
+.edit-complete-button {
+    margin-right: 20px;
+
+    border: none;
+
+    background: transparent url('../assets/icons/complete.png') no-repeat;
+    background-size: contain;
+
+    height: 25px;
+    width: 25px;
+
+    cursor: pointer;
+
+    vertical-align: middle;
 }

@@ -35,8 +35,49 @@ document.getElementById("clear_all").addEventListener("click", clearAll);
 
 // 생성한 li를 to_do_list에 추가
 function addLiToUl(li) {
-    // const ul = document.getElementById("to_do_list");
     ul.appendChild(li);
+}
+
+
+//========================================================
+
+//li에 들어갈 버튼들을 생성
+function createButtonsInLi(li, checkSection, textSection, checkBox) {
+    let inputText = document.createElement("input");
+    inputText.setAttribute("type", "text");
+    inputText.classList.add("text-input-section");
+    inputText.style.display = "none";
+
+    let editCompleteButton = document.createElement("button");
+    editCompleteButton.classList.add("edit-complete-button");
+    // editCompleteButton.textContent = "완료";
+    editCompleteButton.style.display = "none";
+
+    let editButton = document.createElement("button");
+    editButton.classList.add("edit-button");
+    // editButton.textContent = "수정";
+
+    let removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    // removeButton.textContent = "삭제";
+
+    let buttonSection = document.createElement("div");
+    buttonSection.classList.add("button-section");
+    buttonSection.appendChild(editCompleteButton);
+    buttonSection.appendChild(editButton);
+    buttonSection.appendChild(removeButton);
+
+    li.appendChild(checkSection);
+    li.appendChild(textSection);
+    li.appendChild(inputText);
+    li.appendChild(buttonSection);
+
+    addLiToUl(li);
+
+    editButton.addEventListener("click", editForm);
+    editCompleteButton.addEventListener("click", edit);
+    removeButton.addEventListener("click", remove);
+    checkBox.addEventListener("change", checked);
 }
 
 
@@ -57,41 +98,7 @@ function addNewWork(event) {
     textSection.textContent = work;
     textSection.classList.add("text-section");
 
-    let inputText = document.createElement("input");
-    inputText.setAttribute("type", "text");
-    inputText.classList.add("text-input-section");
-    inputText.style.display = "none";
-
-    let editCompleteButton = document.createElement("button");
-    editCompleteButton.classList.add("edit-complete-button");
-    editCompleteButton.textContent = "완료";
-    editCompleteButton.style.display = "none";
-
-    let editButton = document.createElement("button");
-    editButton.classList.add("edit-button");
-    editButton.textContent = "수정";
-
-    let removeButton = document.createElement("button");
-    removeButton.classList.add("remove-button");
-    removeButton.textContent = "삭제";
-
-    let buttonSection = document.createElement("div");
-    buttonSection.classList.add("button-section");
-    buttonSection.appendChild(editCompleteButton);
-    buttonSection.appendChild(editButton);
-    buttonSection.appendChild(removeButton);
-
-    li.appendChild(checkSection);
-    li.appendChild(textSection);
-    li.appendChild(inputText);
-    li.appendChild(buttonSection);
-
-    addLiToUl(li);
-
-    editButton.addEventListener("click", editForm);
-    editCompleteButton.addEventListener("click", edit);
-    removeButton.addEventListener("click", remove);
-    checkBox.addEventListener("change", checked);
+    createButtonsInLi(li, checkSection, textSection, checkBox);
 
     //새로 만든 것은 로컬스토리지에 등록해줘야함.
     localStorage.setItem(id.toString(), work);
@@ -123,41 +130,7 @@ function addExistingWork(existingId, work, isChecked = false) {
         textSection.style.textDecorationLine = "line-through";
     }
 
-    let inputText = document.createElement("input");
-    inputText.setAttribute("type", "text");
-    inputText.classList.add("text-input-section");
-    inputText.style.display = "none";
-
-    let editCompleteButton = document.createElement("button");
-    editCompleteButton.classList.add("edit-complete-button");
-    editCompleteButton.textContent = "완료";
-    editCompleteButton.style.display = "none";
-
-    let editButton = document.createElement("button");
-    editButton.classList.add("edit-button");
-    editButton.textContent = "수정";
-
-    let removeButton = document.createElement("button");
-    removeButton.classList.add("remove-button");
-    removeButton.textContent = "삭제";
-
-    let buttonSection = document.createElement("div");
-    buttonSection.classList.add("button-section");
-    buttonSection.appendChild(editCompleteButton);
-    buttonSection.appendChild(editButton);
-    buttonSection.appendChild(removeButton);
-
-    li.appendChild(checkSection);
-    li.appendChild(textSection);
-    li.appendChild(inputText);
-    li.appendChild(buttonSection);
-
-    addLiToUl(li);
-
-    editButton.addEventListener("click", editForm);
-    editCompleteButton.addEventListener("click", edit);
-    removeButton.addEventListener("click", remove);
-    checkBox.addEventListener("change", checked);
+    createButtonsInLi(li, checkSection, textSection, checkBox);
 
 }
 
