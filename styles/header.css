@@ -8,8 +8,9 @@
     color: black;
     font-size: 30px;
     text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
 
-    margin: 30px 20px 40px 20px;
+    margin: 30px 20px 30px 20px;
 
     min-width: 400px;
 

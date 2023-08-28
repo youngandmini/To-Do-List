@@ -21,7 +21,7 @@ li {
     margin-left: -20px;
 
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     text-align: left;
     align-items: center;
@@ -39,6 +39,8 @@ li {
 }
 
 .text-section {
+    font-family: 'Sunflower', sans-serif;
+
     margin-left: 5px;
     text-decoration-line: none;
     flex-grow: 2;
@@ -50,6 +52,8 @@ li {
 }
 
 .text-input-section {
+    font-family: 'Sunflower', sans-serif;
+
     margin-left: 5px;
     flex-grow: 2;
     font-size: 20px;
